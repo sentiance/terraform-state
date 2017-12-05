@@ -1,5 +1,5 @@
 variable "project" {
-  description = "Project name"
+  description = "Project name (stack)"
 }
 
 variable "environment" {

@@ -8,9 +8,9 @@ resource "aws_s3_bucket" "state" {
   }
 
   tags {
-    Name        = "terraform-state-${var.project}${data.template_file.environment_suffix.rendered}"
-    Environment = "${var.environment}"
-    Project     = "${var.project}"
+    Name        = "${var.environment}.${var.project}.terraform-state-${data.template_file.environment_suffix.rendered}"
+    environment = "${var.environment}"
+    stack     = "${var.project}"
   }
 }
 
@@ -92,10 +92,11 @@ resource "aws_dynamodb_table" "terraform-state-locktable" {
   }
 
   tags {
-    Name        = "terraform-state-lock-${var.project}${data.template_file.environment_suffix.rendered}"
-    Environment = "${var.environment}"
-    Project     = "${var.project}"
+    Name        = "${var.environment}.${var.project}.terraform-state-lock-${data.template_file.environment_suffix.rendered}"
+    environment = "${var.environment}"
+    stack     = "${var.project}"
   }
+
 }
 
 data "template_file" "environment_suffix" {
